@@ -4,6 +4,11 @@ import random
 import re
 import datetime
 import discord_bot
+import os
+from dotenv import load_dotenv
+
+# Load variables from .env into the system environment
+load_dotenv()
 
 # --- Bot Setup ---
 intents = discord.Intents.default()
@@ -11,8 +16,8 @@ intents.message_content = True  # Enable the message content intent
 intents.members = True # Required for fetching members in lootroll if they aren't cached
 LOOT_ROLL_EMOJI = '🎲' # You can use any emoji, e.g., '✅', '⚔️'
 
-bot = discord_bot.DiscordBot(token='YOUR_BOT_TOKEN', intents=intents)
-bot.run()   
+db = discord_bot.DiscordBot(token=os.getenv('DISCORD_TOKEN'), intents=intents)
+bot = db.bot # Get the actual bot instance to use for commands and events
 
 # --- Helper Functions ---
 def parse_dice_roll(roll_str):
@@ -173,7 +178,7 @@ def is_admin():
 
 # --- Run the Bot ---
 if __name__ == "__main__":
-    bot.run()
+    db.run()
 
 
  
