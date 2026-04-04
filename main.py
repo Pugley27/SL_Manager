@@ -65,7 +65,7 @@ async def on_command_error(ctx, error):
 async def pay_member(ctx, member: discord.Member, amount: int):
     await ctx.defer()
     # Call a completely different function
-    result = await api.update_cruor(member.id, amount)
+    result = await api.update_cruor(member.id, member.display_name ,amount)
     await ctx.send(f"Added {amount} Cruor to {member.display_name} blood for the blood gods!")
 
 @bot.command(name='roll', help=f'Rolls dice. Usage: {bot.command_prefix}roll [NdM][+/-X] (e.g., d20, 2d6+3)')

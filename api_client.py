@@ -6,10 +6,10 @@ class GuildAPI:
         self.headers = {"x-api-key": api_key}
         print(f"GuildAPI initialized with base URL: {self.base_url}")   
 
-    async def update_cruor(self, member_id: int, amount: int):
+    async def update_cruor(self, member_id: int, name: str, amount: int):
         url = f"{self.base_url}/currency/add-cruor/"
         print(f"Updating Cruor for member ID {member_id} by {amount}. URL: {url}")
-        params = {"member_id": member_id, "cruor_amount": amount}
+        params = {"member_id": member_id, "display_name": name, "cruor_amount": amount}
         return await self._post(url, params)
 
     async def _post(self, url, params):
